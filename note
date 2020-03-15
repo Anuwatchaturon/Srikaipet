@@ -1,0 +1,116 @@
+  <?php if(isset($_POST['send'])){
+        $name= $_SESSION['name'];
+        $text= $_POST['text'];
+        
+        $q="INSERT INTO `chat` (`id`,`name`,`text`)
+            VALUES('' , '".$name."','".$text."')" ;
+        $r= mysqli_query($con, $q) ;
+
+        if($r) {
+            header("location:index.php");
+        }else{
+            echo $q;
+        }
+}
+
+?>
+
+<style type="text/css">
+#btn{
+background-color: white
+  border: none;
+  color: black;
+  padding: 4px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#btn {
+  background-color: white; 
+  color: red; 
+  border: 2px solid #f44336;
+}
+#btn:hover {
+  background-color: #f44336;
+  color: white;
+}
+</style>
+
+<style type="text/css">
+#btn2{
+background-color: white
+  border: none;
+  color: #6495ED;
+  padding: 5px 45px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#btn2 {
+  background-color: #6495ED; 
+  color: white; 
+  border: 2px solid #6495ED;
+}
+#btn2:hover {
+  background-color: white;
+  color: #6495ED;
+}
+</style>
+  </head>
+
+  <body>
+
+  
+<?php session_start();  
+include('condb.php'); 
+  $name =  $row["name"];
+  $text =  $row["text"];
+  echo  "<div class='col-sm-12' align='center'> <h2> คิวการรักษา </h2> <br> </div>";
+  $qe = "SELECT * FROM chat" or die("Error:" . mysqli_error());
+  $re = mysqli_query($con, $qe); 
+  while($row = mysqli_fetch_array($re)) { 
+    $id =  $row["id"];
+    $name =  $row["name"];
+    $text =  $row["text"];
+    echo  "<div class='col-sm-12' align='center'> คิวที่ : $id ชื่อ :  $name ประเภทสัตว์เลี้ยง : $text <br> </div> ";
+  }
+?>
+
+
+
+
+
+
+    ?>
+    <script src ="sub_file/jquery-3.4.1.js"></script>
+    <script>
+            document.getElementById("register").disabled= true;
+        function check_user(){
+            var username = document.getElementById("username").value;
+            
+            $.post("sub_file/user_check.php",
+            {
+                user: username
+            },
+
+            function(data, status){
+
+                if(data=='p style="color:red">Not Use</p>'){
+                    document.getElementById("register").disabled= true;
+                }else{
+                    document.getElementById("register").disabled= false;
+                }
+               document.getElementById("checking").innerHTML = data;
+            }
+            );
+        }
+
+    </script>
