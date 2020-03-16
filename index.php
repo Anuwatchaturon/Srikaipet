@@ -103,7 +103,7 @@ background-color: white
     <div class="container d-flex">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="test.php"><span>Sikai Pet</span></a></h1>
+        <h1 class="text-light"><a href="index.php"><span>Srikai Pet</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
@@ -124,7 +124,7 @@ background-color: white
   <section id="hero">
     <div class="hero-container" data-aos="fade-up">
       <h1>โรงพยาบาลสัตว์ศรีไค</h1>
-      <h2>เปิดบริการเท่าเซเว่น 24 hr.</h2>
+      <h2>เปิดบริการ 24 hr.</h2>
     </div>
   </section><!-- End Hero -->
 

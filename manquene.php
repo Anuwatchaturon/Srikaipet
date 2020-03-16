@@ -6,7 +6,7 @@ include('../condb.php');
   $ID = $_SESSION['ID'];
   $name = $_SESSION['name'];
   $level = $_SESSION['level'];
- 	if($level!='member'){
+ 	if($level!='admin'){
     Header("Location: ../logout.php");  
   } 
 ?>
@@ -120,7 +120,7 @@ body{
     <div class="container d-flex">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="../index.php"><span>Srikai Pet</span></a></h1>
+        <h1 class="text-light"><a href="test.php"><span>Srikai Pet</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">

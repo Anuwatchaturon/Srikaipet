@@ -6,7 +6,7 @@ include('../condb.php');
   $ID = $_SESSION['ID'];
   $name = $_SESSION['name'];
   $level = $_SESSION['level'];
- 	if($level!='member'){
+ 	if($level!='admin'){
     Header("Location: ../logout.php");  
   } 
 ?>
@@ -120,7 +120,7 @@ body{
     <div class="container d-flex">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="../index.php"><span>Srikai Pet</span></a></h1>
+        <h1 class="text-light"><a href="../admin.php"><span>Srikai Pet</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
@@ -138,114 +138,108 @@ body{
   </header><!-- End Header -->
 
   <section>
-    <div class="container"style= "padding-top:130px">
+  <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/01.png" alt="">
+            <img class="img-fluid rounded-circle" src="img/01.png" >
           </div>
         </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-          <?php session_start();  
-include('../condb.php'); 
-  $id =  $row["id"];
-  $name =  $row["name"];
-  $pet =  $row["pet"];
-  $date =  $row["date"];
-  $qtype =  $row["qtype"];
-
-
-  echo  "<div class='col-sm-12' align='center'> <h1> คิวการรักษา </h1> <br> </div>";
-  $qe = "SELECT * FROM quene" or die("Error:" . mysqli_error());
-  $re = mysqli_query($con, $qe); 
-  while($row = mysqli_fetch_array($re)) { 
-    $id =  $row["id"];
-  $name =  $row["name"];
-  $pet =  $row["pet"];
-  $date =  $row["date"];
-  $qtype =  $row["qtype"];
-    echo  "<div class='col-sm-12' align='center'> คิวที่ : $id ชื่อ : 
-     $name สัตว์เลี้ยง : $pet : วันที่ $date : ประเภทการรักษา $qtype <br> </div> ";
-  }
-?>
+        <div class="p-5"> 
+        <form method="post">จัดการคิวการรักษา
+          <input type="number"name="id">
+          </div>
+          <div class="form-group" >
+                        <a href="allquenemanage.php"><button type="submit" class="btn" id="btn" name="aq">ยืนยัน</button></a>
+                        </div>
         </div>
       </div>
+      </form>
     </div>
+
   </section>
 
-  <section>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/02.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="p-5">
-          <?php session_start();  
-include('../condb.php'); 
-  $id =  $row["id"];
-  $name =  $row["name"];
-  $pet =  $row["pet"];
-  $date =  $row["date"];
-  $qtype =  $row["qtype"];
-
-
-  echo  "<div class='col-sm-12' align='center'> <h1> คิวการรักษานอกสถานที่ </h1> <br> </div>";
-  $qe = "SELECT * FROM offsite" or die("Error:" . mysqli_error());
-  $re = mysqli_query($con, $qe); 
-  while($row = mysqli_fetch_array($re)) { 
-    $id =  $row["id"];
-  $name =  $row["name"];
-  $location =  $row["location"];
-  $time =  $row["time"];
-  $symptom =  $row["symptom"];
-    echo  "<div class='col-sm-12' align='center'> คิวที่ : $id ชื่อ : 
-     $name สัตว์เลี้ยง : $time : อาการเจ็บป่วย $symptom : สถานที่ $location <br> </div> ";
-  }
+  <?php
+include('../h.php');
 ?>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="container">
+  <?php if(isset($_POST['aq'])){
+        
+        $id= $_POST['id'] ;
+        $q = "DELETE FROM quene WHERE id = '".$_POST["id"]."'";
+        $r= mysqli_query($con, $q) ;
+      }
+
+?>
+
+
+<section>
+  <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/03.png" alt="">
+            <img class="img-fluid rounded-circle" src="img/01.png" >
           </div>
         </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <?php
-          include('../condb.php'); 
-          $id =  $row["id"];
-          $name =  $row["name"];
-          $pet =  $row["pet"];
-          $time =  $row["time"];
-
-  echo  "<div class='col-sm-12' align='center'> <h1> รับฝากเลี้ยง </h1> <br> </div>";
-  $qe = "SELECT * FROM tbl" or die("Error:" . mysqli_error());
-  $re = mysqli_query($con, $qe); 
-  while($row = mysqli_fetch_array($re)) { 
-    $id =  $row["id"];
-  $name =  $row["name"];
-  $pett =  $row["pett"];
-  $time =  $row["time"];
-    echo  "<div class='col-sm-12' align='center'> คิวที่ : $id/10 ชื่อ : 
-     $name สัตว์เลี้ยง : $pett : ระยะเวลา $time <br> </div> ";
-  }
-?>
+        <div class="p-5"> 
+        <form method="post">จัดการคิวการรักษา
+          <input type="number"name="id">
           </div>
+          <div class="form-group" >
+                        <a href="allquenemanage.php"><button type="submit" class="btn" id="btn" name="b">ยืนยัน</button></a>
+                        </div>
+        </div>
+      </div>
+      </form>
+    </div>
+
+  </section>
+
+  <?php
+include('../h.php');
+?>
+
+  <?php if(isset($_POST['b'])){
+        
+        $id= $_POST['id'] ;
+        $q = "DELETE FROM offsite WHERE id = '".$_POST["id"]."'";
+        $r= mysqli_query($con, $q) ;
+      }
+
+?>
+
+  <section>
+  <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="img/03.png" align="center" >
+          </div>
+        </div>
+        <div class="p-5">
+        <form method="post">จัดการคิวรับฝากเลี้ยง
+          <input type="number"name="id">
+          
+          </div>
+          <div class="form-group" align="center">
+                        <a href="index.php"><button type="submit" class="btn" id="btn" name="at">ยืนยัน</button></a>
+                        </div>
         </div>
       </div>
     </div>
   </section>
+  <?php
+include('../h.php');
+?>
+
+  <?php if(isset($_POST['at'])){
+        
+        $id= $_POST['id'] ;
+        $q = "DELETE FROM tbl WHERE id = '".$_POST["id"]."'";
+        $r= mysqli_query($con, $q) ;
+      }
+
+?>
 
 
 
